@@ -45,6 +45,17 @@ public class GameManager : MonoBehaviour
         
     }
 
+    struct temp
+    {
+        public string str1, str2;
+
+        public temp(string str1, string str2)
+        {
+            this.str1 = str1;
+            this.str2 = str2;
+        }
+    };
+
     public void CrashCharacterToMonster()
     {
         character.PlayAnimation(Character.PlayerState.attack);
