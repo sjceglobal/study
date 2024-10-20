@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 public class NetworkManager : MonoBehaviour
 {
@@ -29,6 +30,8 @@ public class NetworkManager : MonoBehaviour
         _instance = this;
     }
     #endregion
+
+    public UUID sessionId;
 
     // Start is called before the first frame update
     void Start()
@@ -71,12 +74,28 @@ public class NetworkManager : MonoBehaviour
 
         if (www.error == null && www.isDone)
         {
+           if (www.downloadHandler.text != "")
+            {
+                string uuid_text = www.downloadHandler.text;
+                sessionId = JsonUtility.FromJson<UUID>(uuid_text);
+                SceneManager.LoadScene("SampleScene");
+            }
             Debug.LogError(www.downloadHandler.text);
         }
         else
         {
             Debug.Log("www error : " + www.error);
-
         }
+
     }
+
+    public void UpdateSessionID()
+    {
+
+    }
+}
+
+public class UUID
+{
+    public string sessionId;
 }

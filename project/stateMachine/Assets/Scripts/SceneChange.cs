@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SceneChange : MonoBehaviour
@@ -18,10 +17,6 @@ public class SceneChange : MonoBehaviour
         
     }
 
-    public void OnClickSceneChange()
-    {
-        SceneManager.LoadScene("SampleScene");
-    }
 
     public void OnClickCounter()
     {
@@ -45,13 +40,8 @@ public class SceneChange : MonoBehaviour
         string strPWD = password.GetComponent<InputField>().text;
 
         List<CommonDefine.serverPacket> packetList = new List<CommonDefine.serverPacket>();
-        CommonDefine.serverPacket packet;
-        packet.packetType = "userid";
-        packet.packetValue = strID;
-
-        CommonDefine.serverPacket packet2;
-        packet2.packetType = "userpwd";
-        packet2.packetValue = strPWD;
+        CommonDefine.serverPacket packet = new CommonDefine.serverPacket("userid", strID);
+        CommonDefine.serverPacket packet2 = new CommonDefine.serverPacket("userpwd", strPWD);
 
         packetList.Add(packet);
         packetList.Add(packet2);

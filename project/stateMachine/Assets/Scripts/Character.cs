@@ -6,6 +6,7 @@ public class Character : MonoBehaviour
 {
     public Animator anim;
     public int anim_cnt = 0;
+    public int attack = 10;
     public enum PlayerState
     {
         none = 0,
@@ -16,22 +17,13 @@ public class Character : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (anim_cnt >= 10) {
-            anim_cnt = 0;
-            GameManager.instance.CharacterKilledMonster();
-        }
-        else if (anim.GetCurrentAnimatorStateInfo(0).IsName("character_attack") == true)
-        {
-            float animTime = anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
-            float animCnt = animTime / 1;
-            anim_cnt = (int)animCnt;
-        }
+        
     }
 
     void OnTriggerEnter(Collider other)
